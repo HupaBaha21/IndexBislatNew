@@ -1,0 +1,7 @@
+<ng-container *ngIf="showList && indexOutput">
+    <div class="list-container" *ngIf="indexOutput.length > 0">
+        <div class="list-item" *ngFor="let course of indexOutput" (click)="selectedCourse.emit(course.courseUnclearNumber)">
+            {{course.courseNumber + " - " + course.courseName}}
+        </div>
+    </div>
+</ng-container>

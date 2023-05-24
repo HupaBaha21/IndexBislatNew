@@ -1,0 +1,43 @@
+<img src="../../../assets/images/readMore.svg" style="width: 0; height: 0;">
+<img src="../../../assets/images/readLess.svg" style="width: 0; height: 0;">
+
+<app-header></app-header>
+
+<div class="input-container" [class.input-favorite-container__three-images-position]="threeImagesPosition()">
+    <div class="list-container">
+        <app-search-input [inputControl]="inputControl" (showListEmitter)="handleShowList($event)"
+        (clearEmitter)="handleClear()"></app-search-input>
+        <app-search-list-result [indexOutput]="indexOutput$ | async" [showList]="showList" page="homePage"
+            (selectedItemEmitter)="handleSelected($event)" (selecedCourse)="navigatePage($event)" (selectedCourse)="navigatePage($event)"></app-search-list-result>
+    </div>
+    <img src="../../../assets/images/favorite1.svg" class="favorite-button" (click)="selectedPage.emit('my-favorites')">
+</div>
+
+
+<div class="opening-container">
+    <ng-container *ngFor="let paragraph of openingParagraphs; index as i">
+        <p *ngIf="i < readMoreButton[1]">{{paragraph}}</p>
+    </ng-container>
+
+    <img *ngIf="!readMoreButton[0]" src="../../../assets/images/readMore.svg" class="read-more" (click)="readMoreButtonClick()">
+    <img *ngIf="readMoreButton[0]" src="../../../assets/images/readLess.svg" class="read-more" (click)="readMoreButtonClick()">
+
+    <a (click)="selectedPage.emit('my-favorites')">לרשימת המועדפים שלי</a>
+
+    <ng-container *ngFor="let cycle of sortingCycles">
+        <a (click)="selectedCycle.emit(cycle.name); selectedPage.emit('sorting-cycle')">לרשימת המקצועות למחזור מיון {{cycle.name}}</a>
+    </ng-container>
+
+    <div class="course-selection" *ngIf="showCourseSelection" (click)="selectedPage.emit('preference-form')">
+       <h3>למילוי שאלון העדפות שלי</h3>
+    </div>
+
+    <div class="youtube-container" [class.youtube-container__layer]="showList">
+        <div class="container">
+            <ng-container *ngFor="let url of openingVideosUrl">
+                <iframe class="youtube-video" [src]="url | safeUrl"></iframe>
+            </ng-container>
+            <a href="" (click)="routingPage()">לסרטונים נוספים</a>
+        </div>
+    </div>
+</div>

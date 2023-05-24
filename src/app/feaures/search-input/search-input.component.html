@@ -1,0 +1,8 @@
+<div class="input-container" *ngIf="inputControl">
+    
+    <input id="bislat" type="text" (blur)="onBlur()" (focus)="onFocus()" class="bislat-input" [class.bislat-input__animatedInput]="isFirstVisit" autocomplete="off"
+    [formControl]="inputControl" placeholder={{inputPlaceholder}}>
+   
+    <img src="../../../../assets/images/search1.svg" class="search-icon">
+    <img src="../../../../assets/images/search-line.svg" class="line-icon" [class.bislat-input__animatedLine]="isFirstVisit">
+</div>

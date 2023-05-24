@@ -1,0 +1,43 @@
+
+<!-- <img src="../../../../assets/images/{{isItemFavorite}}" class="favorite-icon" (click)="removeOrAddFavorite()">
+    <img src="../../../../assets/images/home.svg" class="homepage-icon" routerLink="/homePage"> -->
+    <!-- <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css"> -->
+
+
+<!-- <div class='container'> -->
+
+    <img src="../../../../assets/images/miniMap.svg" style="height: 0; width: 0;">
+    <img src="../../../../assets/images/maxMap.svg" style="height: 0; width: 0;">
+    <img src="../../../../assets/images/favorite.svg" style="height: 0; width: 0;">
+    <img src="../../../../assets/images/notFavorite.svg" style="height: 0; width: 0;">
+
+    <app-page-header [iconUrl]="'../../../assets/images/' + isFavorite" [title]="'קורס '" [title_span]="course.courseNumber"
+        [subtitle]="course.courseName" (selectedPage)="pageNavigate($event)" (iconClicked)="removeOrAddToFavorite($event)"></app-page-header>
+    
+        <!-- <mat-sidenav-container> -->
+        <!-- <mat-sidenav #snav mode="over" position="end" fixedInViewport fixedTopGap="0" class="message-background"> -->
+            <!-- <mat-sidenav #snav mode="over" position="end" class="message-background"> -->
+                    <!-- <h3>{{alertText}}</h3> -->
+            <!-- </mat-sidenav> -->
+        <!-- </mat-sidenav-container> -->
+    
+    <div class="info-grid">    
+        <div class="course-output">
+            <h4>{{course.courseDescription}}
+            <span>משך ההכשרה- {{course.courseTime}}</span>
+            <span *ngIf="course.note">שים לב ♡, {{course.note}}</span></h4>
+        </div>
+        
+        <object #mapObject type="image/svg+xml" class="map" [class.map__size]="changeMap" data="assets/images/maxMap.svg"></object>
+        <img #mapAllBases src="../../../../assets/images/miniMap.svg" *ngIf="!changeMap" class="map" [class.map__size]="true">
+        
+        <h4 class="bases-grid">הבסיסים בהם ניתן לשרת הם- 
+            <span *ngFor="let base of course.courseBases">• {{base}}</span>
+        </h4>
+        
+        <div class="youtube-container">
+            <iframe class="youtube-video" [src]="course.youTubeURL | safeUrl"></iframe>
+        </div>
+    </div>
+<!-- </div> -->
+

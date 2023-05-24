@@ -1,0 +1,13 @@
+.background-container {
+  position: absolute;
+  background: #c0cADB;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 60px;
+  box-sizing: border-box;
+
+  &.backgroundcolor__padding {
+    padding-bottom: 215px;
+  }
+}

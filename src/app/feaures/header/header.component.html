@@ -1,0 +1,20 @@
+<li *ngFor="let image of allImages">
+    <div style="width: 0;" [style.backgroundImage]="'url(' + image + ')'"></div>
+</li>
+
+<div class="title-container">
+
+    <h1 [class.h1__three-images-position]="threeImagesPosition">ברוכים הבאים למערך הטכני!</h1>
+
+    <div class="img-grid" [class.img-grid__big-screen]="threeImagesPosition">
+        <div class="background-images" *ngIf="imgURL1 != ''" [style.backgroundImage]="'url(' + imgURL1 + ')'"></div>
+         <div class="background-images" *ngIf="imgURL2 != ''" [style.backgroundImage]="'url(' + imgURL2 + ')'"></div>
+        <div class="background-images" *ngIf="imgURL3 != ''" [style.backgroundImage]="'url(' + imgURL3 + ')'"></div>
+    </div>
+</div>
+
+<div class="logo-container">
+    <img src="../../../assets/images/hupi.svg">
+    <img src="../../../assets/images/techni.svg">
+    <img src="../../../assets/images/baha21_tmp.png">
+</div>

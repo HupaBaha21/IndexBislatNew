@@ -1,0 +1,23 @@
+<app-page-header title="המועדפים שלי" iconUrl="../../../../assets/images/favorite.svg" 
+    (selectedPage)="pageNavigate($event)"></app-page-header>
+
+<div *ngIf="favoriteCourses.length === 0" class="didnt-save"> 
+    <h1>עדיין לא שמרת כלום במועדפים כדי להוסיף מקצוע למועדפים לחץ על האייקון</h1>
+    <img src="../../../../assets/images/notFavorite.svg">
+</div>
+
+<div class="courses-grid" *ngIf="favoriteCourses.length > 0">
+    <div class="output-container" *ngFor="let course of favoriteCourses; let i = index" (click)="courseClicked(course.courseUnclearNumber)">
+
+        <img src="../../../../assets/images/remove.svg" (click)="removeCourse(course)">
+        <div class="header">
+            <h4> קורס {{course.courseNumber}}<span> - {{course.courseName}} </span></h4>
+        </div>
+        
+        <div class="body">
+            <h5 style=" margin-right: 0;"> משך ההכשרה<br>{{course.courseTime}}</h5><hr>
+            <h5> מיקום ההכשרה<br>בח"א 21 - טכני</h5><hr>
+            <h5 style="margin-left: 0; flex-grow: 1.4;">קרב א' נשק <br>מונחה</h5>
+        </div>
+    </div>
+</div>

@@ -1,0 +1,120 @@
+:host {
+  flex-grow: 1;
+
+  .input-container {
+    display: inline-block;
+    width: 100%;
+    height: 100%;
+  }
+
+  .bislat-input {
+    caret-color: transparent;
+    font-size: 15rem;
+    height: 100%;
+    width: 100%;
+    border: solid 2px #2E365B;
+    box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.267);
+    border-radius: 30rem;
+    box-sizing: border-box;
+    padding-right: 52px;
+    background: #ffffff;
+    color: rgb(0, 0, 0);
+    outline: none;
+    text-overflow: ellipsis;
+
+    &.bislat-input__animatedInput {
+      width: 55px;
+      animation: 1s input-size 1s linear forwards;
+
+      @keyframes input-size {
+        from {
+          width: 55px;
+        }
+
+        to {
+          width: 100%;
+        }
+      }
+    }
+  }
+
+  .bislat-input::placeholder {
+    color: rgb(110, 104, 104);
+    font-weight: 200;
+  }
+
+  .bislat-input:focus.bislat-input:not(:placeholder-shown) {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  // .bislat-input:focus {
+  //   border-bottom-right-radius: 0;
+  //   border-bottom-left-radius: 0;
+  // }
+
+  .search-icon {
+    position: absolute;
+    height: 100%;
+    width: 25px;
+    right: 15px;
+    cursor: pointer;
+
+    animation: 3.5s icon-search 2s linear forwards;
+    animation-iteration-count: infinite;
+
+    @keyframes icon-search {
+      0% {
+        transform: rotate(0deg);
+      }
+
+      20% {
+        transform: rotate(12deg);
+      }
+
+      40% {
+        transform: rotate(0deg);
+      }
+
+      100% {
+        transform: rotate(0deg);
+      }
+    }
+  }
+
+  .line-icon {
+    position: absolute;
+    height: 27px;
+    width: 2px;
+    right: 45px;
+    top: 50%;
+    transform: translateY(-50%);
+
+    &.bislat-input__animatedLine {
+      height: 0;
+      width: 0;
+      animation: 0.1s add-line 2s linear forwards;
+
+      @keyframes add-line {
+        from {
+          height: 0;
+          width: 0;
+        }
+
+        to {
+          height: 27px;
+          width: 2px;
+        }
+      }
+    }
+
+  }
+
+
+  @media (min-width: 1200px) {
+    .bislat-input {
+      caret-color: #2E365B;
+    }
+  }
+
+}
