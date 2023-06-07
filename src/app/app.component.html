@@ -13,10 +13,15 @@
     <app-sorting-cycle *ngIf="selectedPage === 'sorting-cycle'" [selectedSortingCycle]="selectedCycle"
     (selectedPage)="selectedPage = $event" (selectedCourse)="selectedCourse = $event"></app-sorting-cycle>
 
-    <app-preference-form *ngIf="selectedPage === 'preference-form'" (selectedPage)="selectedPage = $event"></app-preference-form>
+    <app-preference-form *ngIf="selectedPage === 'preference-form'" 
+    (selectedPage)="selectedPage = $event"></app-preference-form>
 
-    <app-block-page></app-block-page>
+    <app-block-page *ngIf="selectedPage.slice(0, 5) === 'block'" 
+    (selectedPage)="selectedPage = $event" [page]="selectedPage"></app-block-page>
+
+    <app-management *ngIf="selectedPage === 'management'"></app-management>
 </div>
+
 
 
 
@@ -24,3 +29,6 @@
 <img src="../assets/images/favorite.svg" style="width: 0;">
 <img src="../assets/images/notFavorite.svg" style="width: 0;">
 <img src="../assets/images/remove.svg" style="width: 0;">
+<img src="../assets/images/miniMap.svg" style="width: 0;">
+<img src="../assets/images/maxMap.svg" style="width: 0;">
+

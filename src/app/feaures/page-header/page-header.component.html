@@ -1,7 +1,7 @@
 
-<div class="container" [class.container__without-icon]="!iconUrl">
-    <img *ngIf="iconUrl" [src]="iconUrl" class="favorite-icon" (click)="iconClicked.emit(iconUrl === '../../../assets/images/favorite.svg')">
+<div class="container" [class.container__without-icon]="!iconUrl || iconUrl === 'null'">
+    <img *ngIf="iconUrl && iconUrl != 'null'" [src]="iconUrl" class="favorite-icon" (click)="iconClicked.emit(iconUrl === '../../../assets/images/favorite.svg')">
     <h1>{{title}} <span>{{title_span}}</span></h1>
     <h2 style="font-size: 18rem;">{{subtitle}}</h2>
-    <img src="../../../../assets/images/home.svg" class="home-icon" (click)="selectedPage.emit('home-page')">
+    <img *ngIf="iconUrl != 'null'" src="../../../../assets/images/home.svg" class="home-icon" (click)="selectedPage.emit('home-page')">
 </div>

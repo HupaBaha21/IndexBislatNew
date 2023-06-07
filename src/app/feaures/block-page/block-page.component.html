@@ -1,8 +1,10 @@
-<div class="block-container" *ngIf="!isLogedIn()">
+<div class="block-container">
     <img src="../../../../assets/images/stop-icon1.png">
     <h2 style="font-weight: 900;">דף זה חסום</h2>
     <hr>
     <h2>נדרש להתחבר לחשבונך על מנת להמשיך בדף המבוקש</h2>
 
-    <button (click)="buttonClicked()">התחבר</button>
+    <button (click)="login()">התחבר</button>
 </div>
+
+<app-loading *ngIf="loading"></app-loading>

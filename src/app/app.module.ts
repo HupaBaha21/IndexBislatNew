@@ -22,6 +22,7 @@ import { MatListModule } from '@angular/material/list';
 import { MatIconModule } from '@angular/material/icon';
 import { MatToolbarModule } from '@angular/material/toolbar';
 import { MatButtonModule } from '@angular/material/button';
+// import {MatSidenavModule} from '@angular/material/sidenav';
 import { SortingCycleComponent } from './pages/sorting-cycle/sorting-cycle.component';
 import { PreferenceFormComponent } from './pages/preference-form/preference-form.component';
 import { SelectOptionsPipe } from './pipes/select-options.pipe';
@@ -34,12 +35,19 @@ import { RequestsService } from './api-connection/requests/requests.service';
 import { SearchCoursesService } from './services/search-courses/search-courses.service';
 import { TransformResService } from './services/transform-res/transform-res.service';
 import { BlockPageComponent } from './feaures/block-page/block-page.component';
+import { ManagementComponent } from './pages/management/management.component';
+import { SlideNavComponent } from './feaures/slide-nav/slide-nav.component';
+import { ShowSortingCyclesComponent } from './management-features/show-sorting-cycles/show-sorting-cycles.component';
+import { environment } from 'src/environments/environment';
+import { LoadingComponent } from './feaures/loading/loading.component';
 
 export function MSAL_InctanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: '4e3fe790-6226-4152-8ca8-e1c01bd31a6c',
-      redirectUri: 'https://index-bislat.azurewebsites.net/management'
+      // redirectUri: (!environment.production) ? 'http://localhost:4200' : 'https://index-bislat.azurewebsites.net/management'
+      redirectUri: 'http://localhost:4200'
+      // redirectUri: 'https://index-bislat.azurewebsites.net/management'
     }
   })
 }
@@ -72,7 +80,11 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     SortingCycleComponent,
     PreferenceFormComponent,
     SelectOptionsPipe,
-    BlockPageComponent
+    BlockPageComponent,
+    ManagementComponent,
+    SlideNavComponent,
+    ShowSortingCyclesComponent,
+    LoadingComponent,
   ],
   imports: [
     BrowserModule,
@@ -106,7 +118,7 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     MicrosoftLoginService,
     TransformResService
   ],
-  schemas: [CUSTOM_ELEMENTS_SCHEMA],
+  // schemas: [CUSTOM_ELEMENTS_SCHEMA],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

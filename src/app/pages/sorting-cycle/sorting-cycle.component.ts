@@ -17,10 +17,12 @@ export class SortingCycleComponent implements OnInit {
   @Output() selectedCourse = new EventEmitter<string>();
 
   sortingCycle: iSortingCycle_page = { name: '', genders: [] };
+  genderArray: iCours_forCycles[][] = [];
 
   constructor(private apiFunc: TransformResService) { }
 
   ngOnInit(): void {
+    this.genderArray = this.apiFunc.listOfGender(this.selectedSortingCycle + ""); // index: 0- Avionics, 1- Maintenace
     this.updateSortingCycle();
   }
 
@@ -30,11 +32,20 @@ export class SortingCycleComponent implements OnInit {
   }
 
   updateSortingCycle() {
-    const genderArray: iCours_forCycles[][] = this.apiFunc.listOfGender(this.selectedSortingCycle + ""); // index: 0- Avionics, 1- Maintenace
-
     this.sortingCycle.name = this.selectedSortingCycle + "";
-    this.sortingCycle.genders.push({ title: 'אוויוניקה', courses: genderArray[0] });
-    this.sortingCycle.genders.push({ title: 'אחזקה/חשמל', courses: genderArray[1] });
+    this.sortingCycle.genders.push({ title: 'אוויוניקה', courses: this.genderArray[0].slice(0, 3), button: 'הצג הכל' });
+    this.sortingCycle.genders.push({ title: 'אחזקה/חשמל', courses: this.genderArray[1].slice(0, 3), button: 'הצג הכל' });
   }
 
+  showOrHide(index: number) {
+
+    switch (this.sortingCycle.genders[index].button) {
+      case 'הצג פחות':
+        this.sortingCycle.genders[index].courses = this.genderArray[index].slice(0, 3);
+        this.sortingCycle.genders[index].button = 'הצג הכל'; break;
+      case 'הצג הכל':
+        this.sortingCycle.genders[index].courses = this.genderArray[index];
+        this.sortingCycle.genders[index].button = 'הצג פחות'; break;
+    }
+  }
 }

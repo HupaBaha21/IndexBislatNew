@@ -1,0 +1,21 @@
+<!-- <ng-container *ngIf="!pattern.formGroup"> -->
+    <ng-container *ngFor="let sortingCycle of sortionCycles; let i = index">    
+
+        <div class="blob">
+
+
+            <h4 *ngIf="sortingCycle.status === 2 || sortingCycle.status === 3" [class.h4__bold]="sortingCycle.isExpand">מחזור {{sortingCycle.name}}</h4>
+            <h4 *ngIf="sortingCycle.status === 0 || sortingCycle.status === 1" [class.h4__bold]="sortingCycle.isExpand">מחזור {{sortingCycle.name}} (מופיע באתר)</h4>
+            <img src="../../../../assets/images/arrowReadMore.png" class="expand-icon" *ngIf="!sortingCycle.isExpand">
+            <!-- <img src="../../../../assets/images/arrowReadMore.png" class="expand-icon" *ngIf="!sortingCycle.isExpand" (click)="sortOnFocus(i)"> -->
+            <img src="../../../../assets/images/arrowReadLess.png" class="expand-icon" *ngIf="sortingCycle.isExpand">
+            <!-- <img src="../../../../assets/images/arrowReadLess.png" class="expand-icon" *ngIf="sortingCycle.isExpand" (click)="sortOnFocus(i)"> -->
+
+            <!-- <ng-container *ngIf="sortingCycle.isExpand">
+                    <ng-container *ngFor="let option of pattern.expandOptions"> 
+                    <h4 (click)="showConfirmMessage({sortingCycle: sortingCycle.sortingCycle, message: option.message, option: option.text, index: i})">{{option.text}}</h4>
+                </ng-container>
+            </ng-container> -->
+        </div>
+        
+</ng-container>

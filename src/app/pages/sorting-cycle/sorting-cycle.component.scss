@@ -1,5 +1,5 @@
-h2 {
-  font-weight: 450;
+h3 {
+  font-weight: 600;
   margin-bottom: 10px;
 }
 
@@ -8,11 +8,36 @@ h4 {
   cursor: pointer;
 }
 
+h5 {
+  text-decoration: underline #2e365b;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 0;
+  display: inline;
+}
+
 .course-container {
   background-color: #ffffff;
   border-radius: 16px;
   padding: 15px;
   box-sizing: border-box;
   margin-bottom: 20px;
+  color: #2E365B;
   filter: drop-shadow(#00000045 3px 3px 10px);
+}
+
+.container-grid {
+  display: grid;
+  align-items: start;
+  justify-items: stretch;
+  grid-template-columns: repeat(1, minmax(min-content, 840px));
+  justify-content: space-evenly;
+  grid-column-gap: 45px
+}
+
+@media (min-width: 1200px) {
+  .container-grid {
+    grid-template-columns: repeat(2, minmax(min-content, 840px));
+  }
 }

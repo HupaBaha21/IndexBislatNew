@@ -1,4 +1,7 @@
 .block-container {
+  position: relative;
+  top: 50vh;
+  transform: translateY(calc(-50% - 20px));
   width: 90%;
   max-width: 420px;
   padding: 25px;
@@ -6,7 +9,8 @@
   text-align: center;
   margin: auto;
   box-sizing: border-box;
-  background-color: #ffffff87;
+  filter: drop-shadow(rgba(0, 0, 0, 0.2705882353) 3px 3px 10px);
+  background-color: #e1e7f1;
 
   img {
     width: 15%;

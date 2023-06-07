@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { MicrosoftLoginService } from 'src/app/microsoft-msal/microsoft-login/microsoft-login.service';
+import { Input, Output, EventEmitter } from '@angular/core';
+import { MsalService } from '@azure/msal-angular';
+import { AuthenticationResult } from '@azure/msal-browser';
+
 
 @Component({
   selector: 'app-block-page',
@@ -8,15 +11,40 @@ import { MicrosoftLoginService } from 'src/app/microsoft-msal/microsoft-login/mi
 })
 export class BlockPageComponent implements OnInit {
 
-  constructor(private msal_service: MicrosoftLoginService) { }
+  @Output() selectedPage = new EventEmitter<string>();
+  @Input() page: string = '';
+  loading: boolean = false;
+
+  constructor(private msalService: MsalService) {
+  }
 
   ngOnInit(): void {
+    this.page = this.page.slice(6, this.page.length);
+    this.isLogedIn();
   }
 
-  buttonClicked() {
-    this.logIn();
+  login() {
+    this.msalService.loginPopup().subscribe((response: AuthenticationResult) => {
+      this.msalService.instance.setActiveAccount(response.account);
+      this.navPage(response.account?.idTokenClaims?.roles || []);
+    })
   }
 
-  isLogedIn(): boolean { return this.msal_service.isLogedIn(); };
-  logIn() { this.msal_service.logIn(); }
+  isLogedIn() {
+    if (this.msalService.instance.getActiveAccount() != null) {
+      this.loading = true;
+      setTimeout(() => {
+        this.loading = false;
+        this.navPage(this.msalService.instance.getActiveAccount()?.idTokenClaims?.roles || []);
+      }, 150);
+    }
+  }
+
+  navPage(rols: string[]) {
+    if (this.page != 'management') {
+      this.selectedPage.emit(this.page);
+    } else if (rols.includes('Mannger') && this.page === 'management') {
+      this.selectedPage.emit(this.page);
+    }
+  }
 }

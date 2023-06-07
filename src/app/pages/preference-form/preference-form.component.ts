@@ -1,6 +1,6 @@
 import { Component, Directive, EventEmitter, OnInit, Output, ViewChild } from '@angular/core';
 import { FormGroup, FormControl, Validators, ValidatorFn, ValidationErrors, AbstractControl, FormArray, RequiredValidator } from '@angular/forms';
-import { ipreference_page, iSelectionForm, option } from 'src/app/template/preference-form';
+import { ipreference_page, iSelectionForm, option, iPage } from 'src/app/template/preference-form';
 import { TransformResService } from 'src/app/services/transform-res/transform-res.service';
 import { RequestsService } from 'src/app/api-connection/requests/requests.service';
 
@@ -12,15 +12,17 @@ import { RequestsService } from 'src/app/api-connection/requests/requests.servic
 export class PreferenceFormComponent implements OnInit {
 
   @Output() selectedPage = new EventEmitter();
-  formPage: number = 1;
+  formPage: number;
   preferencePattern = ipreference_page;
+  pagePattern: iPage;
   buttonClicked: boolean = false;
   ExpansionValidatorLocation: Array<number[]> = [[], [], []]; //index:  index - optionIndex, value - expansionIndex
 
-  offeredCycles: string[] = [];
+  // offeredCycles: string[] = [];
   APILoading: boolean = false;
   APISuccess: boolean = false;
 
+  // --------------------------------------------------------------------
   selectionPage1Form = new FormGroup({
     cycleInput: new FormControl('', Validators.required),
     nameInput: new FormControl('', Validators.required),
@@ -49,18 +51,55 @@ export class PreferenceFormComponent implements OnInit {
       new FormControl(''),
       new FormControl('')], this.formArrValidator(4))
   });
+  // --------------------------------------------------------------------
 
   constructor(private apiConnection: RequestsService, private apiHelper: TransformResService) {
+    this.formPage = 0;
+    this.pagePattern = ipreference_page[0];
     this.preferencePattern[0].formGroup = this.selectionPage1Form;
     this.preferencePattern[1].formGroup = this.selectionPage2Form;
     this.selectionPage2Form.controls['firstOption'].addValidators(this.selectOptionsValidator(1));
     this.selectionPage2Form.controls['secondOption'].addValidators(this.selectOptionsValidator(2));
     this.selectionPage2Form.controls['thirdOption'].addValidators(this.selectOptionsValidator(3));
-    this.offeredCycles = apiHelper.cyclesName_status1();
+    // this.offeredCycles = apiHelper.cyclesName_status1();
   }
 
   ngOnInit(): void {
   }
+
+  submitForm(index: number): void {
+    this.buttonClicked = true;
+
+    if (this.preferencePattern[this.formPage].formGroup?.valid) {
+      switch (index) {
+        case 0: this.moveNextPage(); break;
+        case 1: this.sendForm(); break;
+      }
+    }
+  }
+
+  moveNextPage(): void {
+    this.formPage++;
+    this.pagePattern = ipreference_page[this.formPage];
+    this.buttonClicked = false;
+  }
+
+  sendForm(): void {
+    this.APILoading = true;
+    this.formPage++;
+    this.apiConnection.postRequest("https://index-bislat-back.azurewebsites.net/Choise/Addchoise", this.createSelectionInterface()).subscribe(
+      res => {
+        this.APILoading = false;
+        this.APISuccess = true;
+      },
+      err => {
+        console.log(err);
+        this.APISuccess = false;
+        this.APILoading = false;
+      },
+    );
+  }
+  //
 
   addAndRemoveInput(isExpansion: boolean, isChecked: boolean, formName: string, option: number, causeNum: number) {
     if (isExpansion) {
@@ -84,45 +123,7 @@ export class PreferenceFormComponent implements OnInit {
     }
   }
 
-  // isLogedIn(): boolean { return (this.msalService.isLogedIn()); }
 
-  submitForm(index: number): void {
-    if (index === 0) { this.moveNextPage(); }
-    if (index === 1) { this.sendForm(); }
-  }
-
-  // -----------------------------------------------------------
-  moveNextPage(): void {
-    this.buttonClicked = true;
-
-    if (this.preferencePattern[0].formGroup?.valid) {
-      // this.allCourses = this.apiHelper.getCyclesListOfCourseName(this.selectionPage1Form.controls["cycleInput"].value + "");
-      // this.allGenders = this.apiHelper.cyclesGenderList(this.selectionPage1Form.controls['cycleInput'].value + "");
-      this.formPage = 2;
-      this.buttonClicked = false;
-    }
-  }
-
-  sendForm(): void {
-    this.buttonClicked = true;
-
-    if (this.selectionPage2Form.valid) {
-      this.APILoading = true;
-      this.formPage = 3;
-      this.apiConnection.postRequest("https://index-bislat-back.azurewebsites.net/Choise/Addchoise", this.createSelectionInterface()).subscribe(
-        res => {
-          this.APILoading = false;
-          this.APISuccess = true;
-        },
-        err => {
-          console.log(err);
-          this.APISuccess = false;
-          this.APILoading = false;
-        },
-      );
-    }
-  }
-  // -----------------------------------------------------------
 
   createSelectionInterface() {
     let tmpPage1 = this.selectionPage1Form.controls;
@@ -169,7 +170,7 @@ export class PreferenceFormComponent implements OnInit {
 
   //---------------------------------- validators ----------------------------------
   isValid(controlName: string): boolean | undefined {
-    if (this.formPage === 1) {
+    if (this.formPage === 0) {
       return !this.buttonClicked || this.selectionPage1Form.get(controlName)?.valid;
     }
     else {

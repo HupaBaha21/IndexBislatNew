@@ -60,8 +60,13 @@ export class TransformResService {
     let cycleByStatus: any[] = [[], [], [], []]; //index-status
 
     for (let i = 0; i < this.allCycles.length; i++) {
+
       let cycle = this.allCycles[i];
-      cycleByStatus[cycle.status].push({ cycle: this.allCycles[i], isExpand: false });
+      cycleByStatus[cycle.status].push({
+        name: cycle.name,
+        status: cycle.status,
+        isExpand: false
+      });
     }
     return cycleByStatus;
   }

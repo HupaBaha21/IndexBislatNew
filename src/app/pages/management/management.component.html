@@ -1,0 +1,55 @@
+<app-slide-nav (selectedNav)="navTitle = $event"></app-slide-nav>
+
+<app-page-header title="דף ניהול" subtitle="מחזורי מיון" 
+    iconUrl="null"></app-page-header>
+
+<!-- הצגת מחזורי מיון -->
+<app-show-sorting-cycles *ngIf="navTitle === 'sorts'" 
+    [sortionCycles]="soringCycles_showed"></app-show-sorting-cycles>
+
+
+
+
+
+
+
+
+
+
+
+<!-- <app-show-sorting-cycles [sortionCycles]="xxx"></app-show-sorting-cycles> -->
+
+
+    <!-- <ng-container *ngIf="!pattern.formGroup">
+        <ng-container *ngFor="let cycle of pattern.cycles; let i = index">    
+
+            <div class="blob">
+                <h4 *ngIf="cycle.cycle.status === 2 || cycle.cycle.status === 3" [class.h4__bold]="cycle.isExpand">מחזור {{cycle.cycle.name}}</h4>
+                <h4 *ngIf="cycle.cycle.status === 0 || cycle.cycle.status === 1" [class.h4__bold]="cycle.isExpand">מחזור {{cycle.cycle.name}} (מופיע באתר)</h4>
+                <img src="../../../../assets/images/arrowReadMore.png" class="expand-icon" *ngIf="!cycle.isExpand" (click)="sortOnFocus(i)">
+                <img src="../../../../assets/images/arrowReadLess.png" class="expand-icon" *ngIf="cycle.isExpand" (click)="sortOnFocus(i)">
+
+                <ng-container *ngIf="cycle.isExpand">
+                        <ng-container *ngFor="let option of pattern.expandOptions"> 
+                        <h4 (click)="showConfirmMessage({cycle: cycle.cycle, message: option.message, option: option.text, index: i})">{{option.text}}</h4>
+                    </ng-container>
+                </ng-container>
+            </div>
+            
+        </ng-container>
+        <app-confirm-message *ngIf="showMessage" (showMessage)="showMessage = $event" (confirm)="confirmOption($event)" [cycle]="message" [messageType]="'confirm'" [apiOutput]="messageOutput"></app-confirm-message>
+
+        <div *ngIf="pattern.url === 'opening-cycles'" class="blob" style="background-color: rgb(255, 255, 255); padding: 10px;" (click)="pattern = managementPattern[1]">
+            <img src="../../../../assets/images/addIcon.png" class="create-new-cycle">
+        </div>
+        <h2 *ngIf="!pattern.cycles?.length && pattern.title === 'ארכיון'" style="color: #61687F; text-align: center; font-weight: 500;">הארכיון שלך ריק!</h2>
+    </ng-container> -->
+
+
+
+
+<!-- 
+    <details>
+        <summary style="font-size: 15px;">Epcot Center</summary>
+        <h1>Epcot is a theme park at Walt Disney World Resort featuring exciting attractions, international pavilions, award-winning fireworks and seasonal special events.</h1>
+      </details> -->

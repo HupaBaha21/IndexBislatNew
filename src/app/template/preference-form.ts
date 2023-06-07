@@ -1,9 +1,8 @@
 import { FormGroup } from "@angular/forms";
 
-interface page {
+export interface iPage {
     formGroup?: FormGroup;
     buttonText: string;
-    // func: () => void;
     items: selection[];
 }
 
@@ -11,13 +10,12 @@ interface selection {
     title: string;
     HTMLelement: string;
     inputPlaceholder: string;
+    formControlName: string;
     selectionsOptions?: option[];
     selectOptions?: any[];
-    formControlName: string;
 }
 
 export interface option {
-    name: string;
     text: string;
     expansion: boolean;
     causeNum: number;
@@ -38,7 +36,7 @@ export interface iSelectionForm {
 }
 
 
-export const ipreference_page: page[] = [
+export const ipreference_page: iPage[] = [
     {
         buttonText: "המשך",
         items: [
@@ -92,25 +90,21 @@ export const ipreference_page: page[] = [
                 inputPlaceholder: "",
                 selectionsOptions: [
                     {
-                        name: '1',
                         text: 'מוטיבציה לתפקיד',
                         expansion: false,
                         causeNum: 0
                     },
                     {
-                        name: '2',
                         text: 'קרבה למקום מגורים',
                         expansion: false,
                         causeNum: 0
                     },
                     {
-                        name: '3',
                         text: 'חברים (יש לציין שמות)',
                         expansion: true,
                         causeNum: 0
                     },
                     {
-                        name: '4',
                         text: 'אחר',
                         expansion: true,
                         causeNum: 0
@@ -131,25 +125,21 @@ export const ipreference_page: page[] = [
                 inputPlaceholder: "",
                 selectionsOptions: [
                     {
-                        name: '',
                         text: 'מוטיבציה לתפקיד',
                         expansion: false,
                         causeNum: 1
                     },
                     {
-                        name: '',
                         text: 'קרבה למקום מגורים',
                         expansion: false,
                         causeNum: 1
                     },
                     {
-                        name: '',
                         text: 'חברים (יש לציין שמות)',
                         expansion: true,
                         causeNum: 1
                     },
                     {
-                        name: '',
                         text: 'אחר',
                         expansion: true,
                         causeNum: 1
@@ -170,31 +160,30 @@ export const ipreference_page: page[] = [
                 inputPlaceholder: "",
                 selectionsOptions: [
                     {
-                        name: '',
+                        // name: '',
                         text: 'מוטיבציה לתפקיד',
                         expansion: false,
                         causeNum: 2
                     },
                     {
-                        name: '',
+                        // name: '',
                         text: 'קרבה למקום מגורים',
                         expansion: false,
                         causeNum: 2
                     },
                     {
-                        name: '',
+                        // name: '',
                         text: 'חברים (יש לציין שמות)',
                         expansion: true,
                         causeNum: 2
                     },
                     {
-                        name: '',
+                        // name: '',
                         text: 'אחר',
                         expansion: true,
                         causeNum: 2
                     }],
                 formControlName: "thirdCauses"
-
             }
         ]
     }

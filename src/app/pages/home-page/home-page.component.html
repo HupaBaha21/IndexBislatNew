@@ -28,7 +28,7 @@
         <a (click)="selectedCycle.emit(cycle.name); selectedPage.emit('sorting-cycle')">לרשימת המקצועות למחזור מיון {{cycle.name}}</a>
     </ng-container>
 
-    <div class="course-selection" *ngIf="showCourseSelection" (click)="selectedPage.emit('preference-form')">
+    <div class="course-selection" *ngIf="showCourseSelection" (click)="selectedPage.emit('block-preference-form')">
        <h3>למילוי שאלון העדפות שלי</h3>
     </div>
 

@@ -1,11 +1,9 @@
 <app-page-header title="שאלון העדפות מיון" (selectedPage)="selectedPage.emit('home-page')"></app-page-header>
 
+  <form [formGroup]="pagePattern.formGroup || selectionPage1Form" (ngSubmit)="submitForm(formPage)">
+    <div class="select-container">
 
-  <ng-container *ngFor="let page of preferencePattern; let i = index">
-  <form [formGroup]="page.formGroup || selectionPage1Form" (ngSubmit)="submitForm(i)">
-    <div *ngIf="formPage === (i + 1)" class="select-container">
-
-      <ng-container *ngFor="let item of page.items; let itemIndex = index">
+      <ng-container *ngFor="let item of pagePattern.items">
 
         <h4>{{item.title}}</h4>
         <input *ngIf="item.HTMLelement === 'input'" class="input-select" [formControlName] = "item.formControlName" [placeholder]="item.inputPlaceholder" [class.error]="!isValid(item.formControlName)"> 
@@ -21,7 +19,7 @@
             <ng-container *ngIf="item.selectionsOptions">
               
               <ng-container (click)="addAndRemoveInput(item.selectionsOptions[y].expansion, causeCheckbox.checked, item.formControlName, y, option.causeNum)">
-                <input #causeCheckbox type="checkbox" [formControlName]=y [id]="item.selectionsOptions[y].name" (click)="addAndRemoveInput(item.selectionsOptions[y].expansion, causeCheckbox.checked, item.formControlName, y, option.causeNum)">
+                <input #causeCheckbox type="checkbox" [formControlName]=y  (click)="addAndRemoveInput(item.selectionsOptions[y].expansion, causeCheckbox.checked, item.formControlName, y, option.causeNum)">
                 <label *ngIf="item.selectionsOptions" style="font-weight: 500; font-size: 15px;">{{item.selectionsOptions[y].text}}</label><br>
               </ng-container>
               
@@ -32,18 +30,14 @@
       
       </ng-container>
       
-      <button type="submit">{{page.buttonText}}</button>
-      <h4 [class.h4__error-message]="true" *ngIf="!page.formGroup?.valid && buttonClicked === true">* הכנס ערך חוקי</h4>
-      <!-- <h4 [class.h4__error-message]="true" *ngIf="errorNote">* לא ניתן לבחור מקצוע יותר מפעם אחת</h4> -->
+      <button type="submit">{{pagePattern.buttonText}}</button>
+      <h4 [class.h4__error-message]="true" *ngIf="!pagePattern.formGroup?.valid && buttonClicked === true">* הכנס ערך חוקי</h4>
       <h2>שים לב! ניתן למלא שאלון זה רק פעם אחת</h2>
     </div>
   </form>
-</ng-container>
 
-
-<!-- <app-block-form *ngIf="!isLogedIn()"></app-block-form> -->
   
-<div *ngIf="formPage === 3" class="note-container">
+<div *ngIf="formPage === 2" class="note-container">
     <span *ngIf="APISuccess && !APILoading">הטופס נשלח בהצלחה!</span>
     <span *ngIf="!APISuccess && !APILoading">מצטערים, לא הצלחנו לשלוח את הטופס שלך</span>
     <img *ngIf="APILoading" src="../../../../assets/images/loading-icon.png">

@@ -1,12 +1,9 @@
 import { Component, ElementRef, Renderer2, OnInit, ViewChild } from '@angular/core';
 import { Input, Output, EventEmitter } from '@angular/core';
-import { UrlTree } from '@angular/router';
 import { RequestsService } from 'src/app/api-connection/requests/requests.service';
 import { TransformResService } from 'src/app/services/transform-res/transform-res.service';
 import { allBases, basesGroups } from 'src/app/template/bases';
 import { MatSidenav } from '@angular/material/sidenav';
-import { ActivatedRoute } from '@angular/router';
-
 
 
 @Component({
@@ -24,10 +21,10 @@ export class SearchOutputComponent implements OnInit {
   changeMap: boolean = false;
 
 
-  alertText: string = 'נוסף למועדפים בהצלחה'
-  // tof: boolean[] = [];
-
   @ViewChild(MatSidenav) snav!: MatSidenav;
+  alertText: string = 'נוסף למועדפים בהצלחה'
+  tof: boolean[] = [];
+  cssClass = '';
 
 
   mapp: Document | undefined;
@@ -46,7 +43,6 @@ export class SearchOutputComponent implements OnInit {
     this.course.courseNumber = this.transformValue.clearNumber('' + this.courseNumber);
     this.isFavorite = this.favoritePosition();
     setTimeout(() => { this.changeMap = !this.course.courseBases.includes('כל בסיסי חיל האוויר'); }, 3500);
-
   }
 
   pageNavigate(page: string) {
@@ -55,15 +51,22 @@ export class SearchOutputComponent implements OnInit {
 
   removeOrAddToFavorite(favorite: boolean) {
     let favoritesCourses: any[] = JSON.parse(localStorage.getItem('my-favorites') || '[]');
+    // console.log("----------------------------------")
+    // console.log(favorite)
 
     // remove from favorites
     if (favorite === true) {
+      // console.log("true")
       this.isFavorite = 'notFavorite.svg';
       let index = favoritesCourses.find(item => item.courseName === this.course.courseName);
       favoritesCourses.splice(index, 1);
+      this.alertText = "הוסר מהמועדפים";
+      // console.log(index)
+      // console.log(favoritesCourses)
     }
     // add to favorites
     else if (favorite === false) {
+      // console.log("false")
       this.isFavorite = 'favorite.svg';
       favoritesCourses.push({
         courseNumber: this.course.courseNumber,
@@ -71,13 +74,20 @@ export class SearchOutputComponent implements OnInit {
         courseName: this.course.courseName,
         courseTime: this.course.courseTime
       });
-      localStorage.setItem('my-favorites', JSON.stringify(favoritesCourses));
+      this.alertText = "נוסף למועדפים בהצלחה";
     }
+    // console.log(favoritesCourses)
+    localStorage.setItem('my-favorites', JSON.stringify(favoritesCourses));
+
+    this.cssClass = 'show';
+    this.tof.push(true);
+    let index = this.tof.length - 1;
+    setTimeout(() => { this.tof[index] = false }, 1300);
+    setTimeout(() => { if (!this.tof.includes(true)) { this.cssClass = 'hide'; } }, 1300);
   }
 
   favoritePosition(): string {
-    // console.log(this.snav);
-    // this.snav.opened = true;
+
     const favorites: any[] = JSON.parse(localStorage.getItem('my-favorites') || '[]');
     let tmp = favorites.find(course => course.courseName === this.course.courseName)
 
@@ -99,7 +109,7 @@ export class SearchOutputComponent implements OnInit {
   // ----------------------------------------------------------------------------------------------
   listToRemove(): string[] {
 
-    let basesToRemove = allBases;
+    let basesToRemove = JSON.parse(JSON.stringify(allBases));
 
     for (let i = 0; i < this.course.courseBases.length; i++) {
       let tmp = this.course.courseBases[i].replace(" ", "_").replace("''", "_");

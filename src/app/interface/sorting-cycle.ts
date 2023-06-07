@@ -17,6 +17,7 @@ export interface iSortingCycle_page {
     name: string;
     genders: Array<{
         title: string,
-        courses: iCours_forCycles[]
+        courses: iCours_forCycles[],
+        button: string
     }>;
 }

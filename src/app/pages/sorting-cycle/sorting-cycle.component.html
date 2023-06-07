@@ -1,9 +1,14 @@
 <app-page-header title="מחזור המיון הקרוב" [subtitle]="sortingCycle.name" (selectedPage)="selectedPage.emit('home-page')"></app-page-header>
 
-<div class="course-container" *ngFor="let gender of sortingCycle.genders">
-
-    <h2>{{gender.title}}</h2>
-    <ng-container *ngFor="let course of gender.courses"> 
-        <h4 (click)="selectedCourse.emit(course.courseUnclearNumber); selectedPage.emit('output-page')">{{course.courseNumber}}- {{course.courseName}}</h4>
+<div class="container-grid">
+    <ng-container *ngFor="let gender of sortingCycle.genders; let i = index">
+        <!-- <div *ngIf="gender.courses.length" class="course-container" [class.course-container__resize]="gender.button === 'הצג פחות'"> -->
+        <div *ngIf="gender.courses.length" class="course-container">
+            <h3>{{gender.title}}</h3>
+            <ng-container *ngFor="let course of gender.courses"> 
+                <h4 (click)="selectedCourse.emit(course.courseUnclearNumber); selectedPage.emit('output-page')">{{course.courseNumber}}- {{course.courseName}}</h4>
+            </ng-container>
+            <h5 *ngIf="genderArray[i].length > 3" (click)="showOrHide(i)">{{gender.button}}</h5>
+        </div>
     </ng-container>
 </div>

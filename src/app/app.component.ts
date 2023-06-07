@@ -14,7 +14,16 @@ export class AppComponent {
   selectedCourse: string = '';
   selectedCycle: string = '';
 
+  blockPage: boolean = true;
+
   constructor() {
-    this.selectedPage = "home-page";
+
+    if (window.location.href === 'http://localhost:4200/') {
+      this.selectedPage = "home-page";
+    }
+    else if (window.location.href === 'http://localhost:4200/management') {
+      // this.selectedPage = "block-management";
+      this.selectedPage = "block-management";
+    }
   }
 }

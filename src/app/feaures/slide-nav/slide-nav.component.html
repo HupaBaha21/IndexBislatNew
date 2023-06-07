@@ -1,0 +1,12 @@
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+<i class="fa fa-bars" (click)="barToggle()" [class.fa__clicked]="navPosition === 'show'"></i>
+
+<div class="bar" [ngClass]="navPosition">
+    <ng-container *ngFor="let title of NavTitles; let i = index">
+        <h3 (click)="itemClicked(title.url)">{{title.text}}</h3>
+    </ng-container>
+    <div class="logout-container">
+        <img src="../../../assets/images/logout.png">
+       <h3 (click)="logOut()">התנתק</h3>
+   </div>
+</div>
