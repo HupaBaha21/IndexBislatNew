@@ -8,13 +8,12 @@ import { iSoringCycle_management } from 'src/app/interface/management-page';
 })
 export class ShowSortingCyclesComponent implements OnInit {
 
-  @Input() sortingCycleByStatus: Array<any[]> = [];
+  // @Input() sortingCycleByStatus: Array<any[]> = [];
   @Input() sortionCycles: iSoringCycle_management[] | undefined;
 
   constructor() { }
 
   ngOnInit(): void {
-    // this.managementPattern = [...this.sortingCycleByStatus[0], ...this.sortingCycleByStatus[1], ...this.sortingCycleByStatus[2]];
   }
 
 }
