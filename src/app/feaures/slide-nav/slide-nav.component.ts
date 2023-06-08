@@ -1,5 +1,5 @@
 import { Component, EventEmitter, OnInit, Output } from '@angular/core';
-import { navOptions } from 'src/app/template/management-nav';
+import { navOptions } from 'src/app/template/management';
 
 
 @Component({
