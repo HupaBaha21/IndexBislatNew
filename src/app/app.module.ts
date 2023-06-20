@@ -40,13 +40,16 @@ import { SlideNavComponent } from './feaures/slide-nav/slide-nav.component';
 import { ShowSortingCyclesComponent } from './management-features/show-sorting-cycles/show-sorting-cycles.component';
 import { environment } from 'src/environments/environment';
 import { LoadingComponent } from './feaures/loading/loading.component';
+import { CreateNewCycleComponent } from './management-features/create-new-cycle/create-new-cycle.component';
+import { ConfirmMessageComponent } from './feaures/confirm-message/confirm-message.component';
+import { ErrorMessageComponent } from './feaures/error-message/error-message.component';
 
 export function MSAL_InctanceFactory(): IPublicClientApplication {
   return new PublicClientApplication({
     auth: {
       clientId: '4e3fe790-6226-4152-8ca8-e1c01bd31a6c',
       // redirectUri: (!environment.production) ? 'http://localhost:4200' : 'https://index-bislat.azurewebsites.net/management'
-      redirectUri: 'http://localhost:4200'
+      redirectUri: 'http://localhost:4200/management'
       // redirectUri: 'https://index-bislat.azurewebsites.net/management'
     }
   })
@@ -55,6 +58,7 @@ export function MSAL_InctanceFactory(): IPublicClientApplication {
 export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
 
   const protectedResourceMap = new Map<string, Array<string>>();
+  // protectedResourceMap.set('https://index-bislat-back.azurewebsites.net', ['api://4e3fe790-6226-4152-8ca8-e1c01bd31a6c/access_as_user']);
   protectedResourceMap.set('https://index-bislat-back.azurewebsites.net', ['api://4e3fe790-6226-4152-8ca8-e1c01bd31a6c/access_as_user']);
   protectedResourceMap.set('https://graph.microsoft.com/v1.0/me', ['user.read', 'mail.read']);
   return {
@@ -62,9 +66,6 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     protectedResourceMap
   };
 }
-
-
-
 
 @NgModule({
   declarations: [
@@ -85,11 +86,15 @@ export function MSALInterceptorConfigFactory(): MsalInterceptorConfiguration {
     SlideNavComponent,
     ShowSortingCyclesComponent,
     LoadingComponent,
+    CreateNewCycleComponent,
+    ConfirmMessageComponent,
+    ErrorMessageComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     ReactiveFormsModule,
+    MsalModule,
     HttpClientModule,
     MatSidenavModule,
     MatListModule,

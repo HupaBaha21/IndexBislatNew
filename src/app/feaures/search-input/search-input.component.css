@@ -1,0 +1,174 @@
+:host {
+  -webkit-box-flex: 1;
+      -ms-flex-positive: 1;
+          flex-grow: 1;
+}
+
+:host .input-container {
+  display: inline-block;
+  width: 100%;
+  height: 100%;
+}
+
+:host .bislat-input {
+  caret-color: transparent;
+  font-size: 15rem;
+  height: 100%;
+  width: 100%;
+  border: solid 2px #2E365B;
+  -webkit-box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.267);
+          box-shadow: 3px 3px 10px rgba(0, 0, 0, 0.267);
+  border-radius: 30rem;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  padding-right: 52px;
+  background: #ffffff;
+  color: black;
+  outline: none;
+  text-overflow: ellipsis;
+}
+
+:host .bislat-input.bislat-input__animatedInput {
+  width: 55px;
+  -webkit-animation: 1s input-size 1s linear forwards;
+          animation: 1s input-size 1s linear forwards;
+}
+
+@-webkit-keyframes input-size {
+  from {
+    width: 55px;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+@keyframes input-size {
+  from {
+    width: 55px;
+  }
+  to {
+    width: 100%;
+  }
+}
+
+:host .bislat-input::-webkit-input-placeholder {
+  color: #6e6868;
+  font-weight: 200;
+}
+
+:host .bislat-input:-ms-input-placeholder {
+  color: #6e6868;
+  font-weight: 200;
+}
+
+:host .bislat-input::-ms-input-placeholder {
+  color: #6e6868;
+  font-weight: 200;
+}
+
+:host .bislat-input::placeholder {
+  color: #6e6868;
+  font-weight: 200;
+}
+
+:host .bislat-input:focus.bislat-input:not(:placeholder-shown) {
+  border-bottom-right-radius: 0;
+  border-bottom-left-radius: 0;
+}
+
+:host .search-icon {
+  position: absolute;
+  height: 100%;
+  width: 25px;
+  right: 15px;
+  cursor: pointer;
+  -webkit-animation: 3.5s icon-search 2s linear forwards;
+          animation: 3.5s icon-search 2s linear forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+@-webkit-keyframes icon-search {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+@keyframes icon-search {
+  0% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  20% {
+    -webkit-transform: rotate(12deg);
+            transform: rotate(12deg);
+  }
+  40% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+  100% {
+    -webkit-transform: rotate(0deg);
+            transform: rotate(0deg);
+  }
+}
+
+:host .line-icon {
+  position: absolute;
+  height: 27px;
+  width: 2px;
+  right: 45px;
+  top: 50%;
+  -webkit-transform: translateY(-50%);
+          transform: translateY(-50%);
+}
+
+:host .line-icon.bislat-input__animatedLine {
+  height: 0;
+  width: 0;
+  -webkit-animation: 0.1s add-line 2s linear forwards;
+          animation: 0.1s add-line 2s linear forwards;
+}
+
+@-webkit-keyframes add-line {
+  from {
+    height: 0;
+    width: 0;
+  }
+  to {
+    height: 27px;
+    width: 2px;
+  }
+}
+
+@keyframes add-line {
+  from {
+    height: 0;
+    width: 0;
+  }
+  to {
+    height: 27px;
+    width: 2px;
+  }
+}
+
+@media (min-width: 1200px) {
+  :host .bislat-input {
+    caret-color: #2E365B;
+  }
+}
+/*# sourceMappingURL=search-input.component.css.map */

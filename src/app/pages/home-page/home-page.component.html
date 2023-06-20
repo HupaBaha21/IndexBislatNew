@@ -8,7 +8,8 @@
         <app-search-input [inputControl]="inputControl" (showListEmitter)="handleShowList($event)"
         (clearEmitter)="handleClear()"></app-search-input>
         <app-search-list-result [indexOutput]="indexOutput$ | async" [showList]="showList" page="homePage"
-            (selectedItemEmitter)="handleSelected($event)" (selecedCourse)="navigatePage($event)" (selectedCourse)="navigatePage($event)"></app-search-list-result>
+        (selecedCourse)="navigatePage($event)" (selectedCourse)="navigatePage($event)"></app-search-list-result>
+            <!-- (selectedItemEmitter)="handleSelected($event)" (selecedCourse)="navigatePage($event)" (selectedCourse)="navigatePage($event)"></app-search-list-result> -->
     </div>
     <img src="../../../assets/images/favorite1.svg" class="favorite-button" (click)="selectedPage.emit('my-favorites')">
 </div>

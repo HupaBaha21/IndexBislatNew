@@ -1,0 +1,69 @@
+.message-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background-color: #c0cadb7a;
+  z-index: 10000;
+}
+
+.container {
+  position: absolute;
+  padding: 40px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  text-align: center;
+  width: 78%;
+  max-width: 450px;
+  min-height: 160px;
+  top: 150px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+  color: white;
+  border-radius: 15px;
+  background-color: #2e365b;
+  z-index: 10000000;
+}
+
+.container .loading-icon {
+  position: relative;
+  margin: 15px;
+  width: 22px;
+  -webkit-animation: 1.5s loading-icon 0 linear forwards;
+          animation: 1.5s loading-icon 0 linear forwards;
+  -webkit-animation-iteration-count: infinite;
+          animation-iteration-count: infinite;
+}
+
+.container .close-icon {
+  position: absolute;
+  padding: 7px;
+  width: 12px;
+  top: 9px;
+  left: 9px;
+}
+
+@-webkit-keyframes loading-icon {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+@keyframes loading-icon {
+  100% {
+    -webkit-transform: rotate(360deg);
+            transform: rotate(360deg);
+  }
+}
+
+.show {
+  display: block;
+}
+
+.show.show__unshow {
+  display: none;
+}
+/*# sourceMappingURL=confirm-message.component.css.map */

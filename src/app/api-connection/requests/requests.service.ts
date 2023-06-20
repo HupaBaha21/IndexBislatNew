@@ -19,7 +19,7 @@ export class RequestsService {
 
   postRequest(httpURL: string, item: any): Observable<string> {
 
-    return this.http.post(httpURL, JSON.stringify(item), {
+    return this.http.post(this.url + httpURL, JSON.stringify(item), {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       responseType: 'text',
     });
@@ -34,12 +34,12 @@ export class RequestsService {
   }
 
   DeleteRequest(httpURL: string) {
-    return this.http.delete(httpURL, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' },
+    return this.http.delete(this.url + httpURL, { headers: new HttpHeaders({ 'Content-Type': 'application/json' }), responseType: 'text' },
     );
   }
 
-  PutRequest(httpURL: string, item: any) {
-    return this.http.put(httpURL, JSON.stringify(item), {
+  PutRequest(httpURL: string, item: any): Observable<string> {
+    return this.http.put(this.url + httpURL, JSON.stringify(item), {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       responseType: 'text',
     })

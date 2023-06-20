@@ -1,0 +1,36 @@
+.blob {
+  position: relative;
+  background-color: #ffffff87;
+  margin: 13px auto 0;
+  border-radius: 10px;
+  padding: 10px 10px 10px 50px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.blob .add-cycle {
+  position: relative;
+  width: 30px;
+  right: 50%;
+  -webkit-transform: translateX(50%);
+          transform: translateX(50%);
+}
+
+.blob .expand-icon {
+  position: absolute;
+  height: 18px;
+  bottom: 3px;
+  left: 12px;
+  padding: 8px;
+}
+
+h4 {
+  width: -webkit-fit-content;
+  width: -moz-fit-content;
+  width: fit-content;
+}
+
+h4.h4__bold {
+  font-weight: 400;
+}
+/*# sourceMappingURL=show-sorting-cycles.component.css.map */

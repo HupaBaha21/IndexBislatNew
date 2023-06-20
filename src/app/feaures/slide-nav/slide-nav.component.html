@@ -3,7 +3,7 @@
 
 <div class="bar" [ngClass]="navPosition">
     <ng-container *ngFor="let title of NavTitles; let i = index">
-        <h3 (click)="itemClicked(title.url)">{{title.text}}</h3>
+        <h3 (click)="itemClicked(title)">{{title.text}}</h3>
     </ng-container>
     <div class="logout-container">
         <img src="../../../assets/images/logout.png">

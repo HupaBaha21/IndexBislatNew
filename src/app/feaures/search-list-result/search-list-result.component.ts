@@ -12,11 +12,8 @@ export class SearchListResultComponent implements OnInit {
   @Input() page: string | undefined;
   @Input() showList: boolean | undefined;
 
-  @Output() selectedItemEmitter = new EventEmitter<iCours_short>();
   @Output() selectedPage = new EventEmitter<string>();
-
-  // @Output() selecedCourse = new EventEmitter<iCours_short>();
-  @Output() selectedCourse = new EventEmitter<string>();
+  @Output() selectedCourse = new EventEmitter();
 
 
   constructor() { }
@@ -24,23 +21,13 @@ export class SearchListResultComponent implements OnInit {
   ngOnInit(): void {
   }
 
-  listClicked(item: any) {
+  listClicked(course: any) {
     if (this.page === 'homePage') {
+      this.selectedCourse.emit(course.courseUnclearNumber);
       this.selectedPage.emit('course-page');
     }
     else if (this.page === 'managementPage') {
-      this.selectedItemEmitter.emit(item);
+      this.selectedCourse.emit(course);
     }
   }
-
-  // itemClicked(item: any) {
-  //   if (this.page === 'homePage') {
-  //     sessionStorage.setItem("selectedItem", item.courseName);
-  //     window.location.href = '/course/' + item.courseNumber;
-  //   }
-  //   else if (this.page === 'managementPage') {
-  //     this.selectedItemEmitter.emit(item);
-  //   }
-  // }
-
 }

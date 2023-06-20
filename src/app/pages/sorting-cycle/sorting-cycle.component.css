@@ -1,0 +1,56 @@
+h3 {
+  font-weight: 600;
+  margin-bottom: 10px;
+}
+
+h4 {
+  margin: 8px auto 8px;
+  cursor: pointer;
+}
+
+h5 {
+  -webkit-text-decoration: underline #2e365b;
+          text-decoration: underline #2e365b;
+  font-weight: 500;
+  font-size: 14px;
+  cursor: pointer;
+  padding: 5px 0;
+  display: inline;
+}
+
+.course-container {
+  background-color: #ffffff;
+  border-radius: 16px;
+  padding: 15px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  margin-bottom: 20px;
+  color: #2E365B;
+  -webkit-filter: drop-shadow(#00000045 3px 3px 10px);
+          filter: drop-shadow(#00000045 3px 3px 10px);
+}
+
+.container-grid {
+  display: -ms-grid;
+  display: grid;
+  -webkit-box-align: start;
+      -ms-flex-align: start;
+          align-items: start;
+  justify-items: stretch;
+  -ms-grid-columns: (minmax(min-content, 840px))[1];
+      grid-template-columns: repeat(1, minmax(-webkit-min-content, 840px));
+      grid-template-columns: repeat(1, minmax(min-content, 840px));
+  -webkit-box-pack: space-evenly;
+      -ms-flex-pack: space-evenly;
+          justify-content: space-evenly;
+  grid-column-gap: 45px;
+}
+
+@media (min-width: 1200px) {
+  .container-grid {
+    -ms-grid-columns: (minmax(min-content, 840px))[2];
+        grid-template-columns: repeat(2, minmax(-webkit-min-content, 840px));
+        grid-template-columns: repeat(2, minmax(min-content, 840px));
+  }
+}
+/*# sourceMappingURL=sorting-cycle.component.css.map */

@@ -1,0 +1,143 @@
+:host {
+  color: #2E365B;
+
+  //   .backgroundcolor {
+  //     position: absolute;
+  //     background: #c0cADB;
+  //     width: 100%;
+  //     min-height: 100%;
+  //   }
+
+  //   .header-container {
+  //     padding: 10px;
+  //     box-sizing: border-box;
+  //     margin-bottom: 30px;
+
+  //     h2 {
+  //       margin-top: -6px;
+  //     }
+  //   }
+
+  //   h3 {
+  //     margin: 1px 0;
+  //   }
+
+  .list-container {
+    position: absolute;
+    width: 90%;
+    max-width: 750px;
+    margin-bottom: 15px;
+  }
+
+  h4 {
+    &.h4__bold {
+      font-weight: 400;
+    }
+
+    span {
+      font-weight: 300;
+      display: block;
+      margin: 5px 21px 5px 0;
+    }
+
+    img {
+      position: absolute;
+      width: 13px;
+      padding: 2px;
+    }
+  }
+
+
+  .input-style {
+    width: 100%;
+    font-size: 15px;
+    padding: 10px;
+    box-sizing: border-box;
+    border-radius: 15px;
+    color: #2E365B;
+    border: 1px solid #2E365B;
+    -webkit-appearance: none;
+  }
+
+  .input-style:focus.input-style:not(:placeholder-shown) {
+    border-bottom-right-radius: 0;
+    border-bottom-left-radius: 0;
+  }
+
+  button {
+    font-weight: 600;
+    font-size: 17rem;
+    min-height: 40px;
+    min-width: 80px;
+    margin: 20px 5px;
+    padding: 6px 24px;
+    color: cornsilk;
+    background-color: #2E365B;
+    filter: drop-shadow(#00000045 3px 3px 10px);
+    border-radius: 10px;
+    border: none;
+  }
+
+  .button-container {
+    padding: 5px;
+  }
+
+  label {
+    font-size: 16rem;
+    font-weight: 300;
+  }
+
+
+  .blob {
+    position: relative;
+    background-color: #ffffff87;
+    margin: 13px auto 0;
+    border-radius: 10px;
+    padding: 10px 10px 10px 50px;
+    box-sizing: border-box;
+
+    .create-new-cycle {
+      position: relative;
+      width: 30px;
+      right: 50%;
+      // top: 50%;
+      transform: translateX(50%);
+    }
+
+    .expand-icon {
+      position: absolute;
+      height: 18px;
+      bottom: 3px;
+      left: 12px;
+      padding: 8px;
+    }
+  }
+
+  @media (min-width: 1200px) {
+    // .header-container {
+    //   margin-bottom: 80px;
+    // }
+
+    .container {
+      .input-style {
+        font-size: 17px;
+      }
+    }
+
+    label {
+      font-size: 18rem;
+    }
+
+    h1 {
+      font-size: 30rem;
+    }
+
+    h2 {
+      font-size: 22rem;
+    }
+
+    h3 {
+      font-size: 20rem;
+    }
+  }
+}

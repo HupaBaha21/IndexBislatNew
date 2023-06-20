@@ -1,0 +1,58 @@
+.message-background {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  z-index: 10000;
+  background-color: #c0cadb7a;
+}
+
+.container {
+  position: absolute;
+  padding: 40px;
+  box-sizing: border-box;
+  text-align: center;
+  width: 78%;
+  max-width: 450px;
+  min-height: 160px;
+  top: 150px;
+  right: 50%;
+  transform: translateX(50%);
+  color: white;
+  border-radius: 15px;
+  background-color: #2e365b;
+  // box-shadow: inset 0px 0px 20px 0px #2e365b;
+  z-index: 10000000;
+  overflow: auto;
+
+  .loading-icon {
+    position: relative;
+    margin: 15px;
+    width: 22px;
+    animation: 1.5s loading-icon 0 linear forwards;
+    animation-iteration-count: infinite;
+  }
+
+  .close-icon {
+    position: absolute;
+    padding: 7px;
+    width: 12px;
+    top: 9px;
+    left: 9px;
+  }
+
+  @keyframes loading-icon {
+    100% {
+      transform: rotate(360deg);
+    }
+  }
+}
+
+.show {
+  display: block;
+
+  &.show__unshow {
+    display: none;
+  }
+}

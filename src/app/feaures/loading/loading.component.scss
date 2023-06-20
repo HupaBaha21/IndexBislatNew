@@ -5,8 +5,8 @@
   width: calc(100% - 60px);
   height: calc(100% - 60px);
   padding: 30px;
-  background-color: rgb(224 224 224 / 19%);
-  z-index: 10000000;
+  background-color: #c0cadb7a;
+  z-index: 100000000000000;
 
   .output-container {
     position: relative;
@@ -26,7 +26,7 @@
   .loading-icon {
     width: 35px;
     transform: rotate(0);
-    animation: 1s rotate-icon 0s linear infinite;
+    animation: 1.3s rotate-icon 0s cubic-bezier(0.08, 0.13, 0.9, 0.91) infinite;
 
     @keyframes rotate-icon {
       from {

@@ -1,0 +1,42 @@
+.block-container {
+  position: relative;
+  top: 50vh;
+  -webkit-transform: translateY(calc(-50% - 20px));
+          transform: translateY(calc(-50% - 20px));
+  width: 90%;
+  max-width: 420px;
+  padding: 25px;
+  border-radius: 15px;
+  text-align: center;
+  margin: auto;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  -webkit-filter: drop-shadow(rgba(0, 0, 0, 0.270588) 3px 3px 10px);
+          filter: drop-shadow(rgba(0, 0, 0, 0.270588) 3px 3px 10px);
+  background-color: #e1e7f1;
+}
+
+.block-container img {
+  width: 15%;
+  margin: 0 11px 9px;
+}
+
+.block-container hr {
+  height: 1px;
+  border: none;
+  background: #2E365B;
+  margin: 10px auto 20px;
+}
+
+.block-container button {
+  background: #2E365B;
+  padding: 5px 17px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+  color: #fff;
+  font-size: 15px;
+  margin: 20px auto 0;
+  border-radius: 5px;
+  border: none;
+}
+/*# sourceMappingURL=block-page.component.css.map */

@@ -3,7 +3,7 @@
   top: 0;
   left: 0;
   width: 100%;
-  z-index: 100000;
+  z-index: 1000;
   background-color: #2E365B;
   color: white;
   padding: 60px 11px 15px;
@@ -63,7 +63,7 @@
   font-size: 35px;
   color: #2E365B;
   padding: 5px;
-  z-index: 1000000000;
+  z-index: 10000;
 
   &.fa__clicked {
     color: #fff;

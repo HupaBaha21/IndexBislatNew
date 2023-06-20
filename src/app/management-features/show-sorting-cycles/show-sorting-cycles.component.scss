@@ -6,11 +6,10 @@
   padding: 10px 10px 10px 50px;
   box-sizing: border-box;
 
-  .create-new-cycle {
+  .add-cycle {
     position: relative;
     width: 30px;
     right: 50%;
-    // top: 50%;
     transform: translateX(50%);
   }
 
@@ -21,4 +20,24 @@
     left: 12px;
     padding: 8px;
   }
+}
+
+h4 {
+  width: fit-content;
+
+  &.h4__bold {
+    font-weight: 400;
+  }
+
+  // span {
+  //   font-weight: 300;
+  //   display: block;
+  //   margin: 5px 21px 5px 0;
+  // }
+
+  // img {
+  //   position: absolute;
+  //   width: 13px;
+  //   padding: 2px;
+  // }
 }

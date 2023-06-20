@@ -29,7 +29,8 @@ export const expandOptions_sorts: iExpandOptions[] =
     }, {
         option: 'מחיקה',
         message: 'האם אתה בטוח שברצונך למחוק מחזור מיון זה?'
-    },];
+    },
+    ];
 
 
 //archives options
@@ -43,4 +44,33 @@ export const expandOptions_archives: iExpandOptions[] =
     }, {
         option: 'מחיקה',
         message: 'האם אתה בטוח שברצונך למחוק מחזור מיון זה?'
-    },];
+    },
+    ];
+
+//create new cycle
+export const createNewCycle = [
+    {
+        title: "שם מחזור המיון",
+        HTMLelement: "input",
+        inputPlaceholder: "לדוגמא: דצמבר 2022",
+        formControlName: "name"
+    },
+    {
+        title: "הוספת קורסים",
+        HTMLelement: "search",
+        inputPlaceholder: "הקלד מספר/ שם מקצוע",
+        formControlName: "genderInput"
+    },
+    {
+        title: "הצגת מחזור המיון באתר",
+        HTMLelement: "checkbox",
+        show: true,
+        formControlName: "showSortOnWeb"
+    },
+    {
+        title: "פתיחת שאלון העדפות",
+        HTMLelement: "checkbox",
+        show: false,
+        formControlName: "openSelectionForm"
+    }
+]

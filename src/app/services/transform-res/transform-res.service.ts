@@ -2,6 +2,7 @@ import { Injectable } from '@angular/core';
 import { RequestsService } from 'src/app/api-connection/requests/requests.service';
 import { iCours_short, iCours_ClearNum, iCours_forCycles } from 'src/app/interface/courses';
 import { iSortCycle } from 'src/app/interface/sorting-cycle';
+import { iGender } from 'src/app/interface/management-page';
 
 @Injectable({
   providedIn: 'root'
@@ -171,6 +172,11 @@ export class TransformResService {
 
 
 
+  g() {
+
+  }
+
+
 
 
 
@@ -205,6 +211,24 @@ export class TransformResService {
       if (this.allCycles[i].status === 1) {
         list.push(this.allCycles[i].name);
       }
+    }
+    return list;
+  }
+
+
+  //מחזיר רשימת קורסים של מחזון מיון לפי מגזר
+  arrayCoursesByGender(cycleName: string) {
+    let list: iGender[] = [{ title: 'אוויוניקה', courses: [] }, { title: 'אחזקה/ חשמל', courses: [] }];
+    if (cycleName === '') { return list; }
+
+    let courses = this.apiConnection.GetRequest('Sort/' + cycleName).courses;
+
+    for (let i = 0; i < courses.length; i++) {
+
+      let index = 1;
+      let course = courses[i];
+      if (course.gender === 'Avionics') { index = 0; }
+      list[index].courses.push({ courseName: course.courseName, courseNumber: this.clearNumber(course.courseNumber), courseUnclearNumber: course.courseNumber, gender: course.gender })
     }
     return list;
   }

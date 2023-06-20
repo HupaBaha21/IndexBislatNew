@@ -1,0 +1,45 @@
+<form [formGroup]="newCycle" (ngSubmit)="createCycleInterface()">
+    <ng-container *ngFor="let element of pattern; let elementIndex = index">
+
+        <h4 *ngIf="element.HTMLelement != 'checkbox' && element.title">{{element.title}}</h4>
+
+        <!-- input -->
+        <input *ngIf="element.HTMLelement === 'input'" class="input-style" style="margin-bottom: 7px; border-radius: 15px;" 
+        [formControlName]="element.formControlName + ''" [placeholder]="element.inputPlaceholder" [class.input-style__focus]="true">
+        
+        <!-- checkbox -->
+        <ng-container *ngIf="element.HTMLelement === 'checkbox' && element.show">
+            <input #checkbox type="checkbox" style=" margin-top: 15px;" [formControlName]="element.formControlName + ''" (click)="checkBoxClicked(checkbox.checked, elementIndex)">
+            <label style="font-weight: 400;">{{element.title}}</label><br> 
+        </ng-container>
+        
+        <!-- search -->
+        <ng-container *ngIf="element.HTMLelement === 'search'">
+            <input class="input-style" [formControl]="inputControl" placeholder="הקלד מספר/ שם מקצוע" (blur)="onBlur()" (focus)="listOnFocus()" autocomplete="off">
+            <div class="list-container">
+                <app-search-list-result [indexOutput]="indexOutput$ | async" [showList]="showList" page="managementPage"
+                 (selectedCourse)="addCourse($event)"></app-search-list-result>
+            </div>
+            <ng-container *ngIf="genderArr">
+                <div class="blob" *ngIf="genderArr[0].courses.length || genderArr[1].courses.length">
+                    <ng-container *ngFor="let gender of genderArr; let genderIndex = index">
+                        <h4 *ngIf="gender.courses.length" [class.h4__bold]="true">
+                            {{gender.title}}
+                            <div *ngFor="let course of gender.courses">
+                                <img src="../../../../assets/images/remove.svg" (click)="deleteCourseFromCycle(course, genderIndex)">
+                                <span>{{course.courseNumber}}- {{course.courseName}}</span>
+                            </div>
+                        </h4>
+                    </ng-container>
+                </div>
+            </ng-container>
+        </ng-container>
+    </ng-container>
+
+    <h4 *ngIf="(!coursesValidator() || !newCycle.valid) && buttonClicked" style="color: red; margin-top: 20px;">* יש למלא שם מחזור מיון ולבחור לפחות 3 קורסים השייכים לאותו מגזר</h4>
+    <button  type="submit" (click)="buttonClicked = true">סיום</button>
+    <button (click)="selectedPage.emit({url: 'sorts', text: 'מחזורי מיון'})">ביטול</button>
+    <!-- <button  type="submit" (click)="buttonClicked = true; API_func = pattern.url">סיום</button> -->
+    <!-- <button  (click)="clearPage()">ביטול</button> -->
+    <!-- <app-preview *ngIf="showPreviewPopUp"(popUp)="showPreviewPopUp = $event" [information]="previewPagePattern" [newCycleInterface]="cycle" [apiFunc]="API_func" (page)="pattern.url= $event" (sorstingCycle)="addCycleToArray($event)"></app-preview> -->
+</form>

@@ -48,11 +48,6 @@ export class HomePageComponent implements OnInit {
       this.selectedPage.emit('output-page');
       this.selectedCourse.emit(event);
     }
-    // else if (this.page === 'management-page') {
-    //   this.selectedPage.emit('');
-    // }
-
-    // this.selectedCourse.emit(this.page);
   }
 
   ngOnInit(): void { }

@@ -7,15 +7,14 @@
         <img src="../../../../assets/images/arrowReadMore.png" class="expand-icon" *ngIf="!sortingCycle.isExpand">
         <img src="../../../../assets/images/arrowReadLess.png" class="expand-icon" *ngIf="sortingCycle.isExpand">
 
-        <!-- <img src="../../../../assets/images/arrowReadMore.png" class="expand-icon" *ngIf="!sortingCycle.isExpand" (click)="sortOnFocus(i)"> -->
-        <!-- <img src="../../../../assets/images/arrowReadLess.png" class="expand-icon" *ngIf="sortingCycle.isExpand" (click)="sortOnFocus(i)"> -->
-
         <ng-container *ngIf="sortingCycle.isExpand">
-            <ng-container *ngFor="let option of sortionCycles?.expandOptions"> 
-                <!-- <h4 (click)="showConfirmMessage({sortingCycle: sortingCycle.sortingCycle, message: option.message, option: option.text, index: i})">{{option.text}}</h4> -->
-                <h4>{{option.option}}</h4>
+            <ng-container *ngFor="let option of sortionCycles?.expandOptions; let y = index"> 
+                <h4 (click)="optionClicked(y, i)">{{option.option}}</h4>
             </ng-container>
         </ng-container>
     </div>
-        
 </ng-container>
+
+<div class="blob" *ngIf="page.url === 'sorts'" style="background-color: rgb(255, 255, 255); padding: 10px;" (click)="selectedPage.emit({ text: 'יצירת מחזור מיון חדש', url: 'create-new-cycle' })">
+    <img src="../../../../assets/images/addIcon.png" class="add-cycle">
+</div>

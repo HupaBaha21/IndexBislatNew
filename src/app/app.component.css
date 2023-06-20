@@ -1,0 +1,15 @@
+.background-container {
+  position: absolute;
+  background: #c0cADB;
+  width: 100%;
+  min-height: 100vh;
+  padding: 20px;
+  padding-bottom: 60px;
+  -webkit-box-sizing: border-box;
+          box-sizing: border-box;
+}
+
+.background-container.backgroundcolor__padding {
+  padding-bottom: 215px;
+}
+/*# sourceMappingURL=app.component.css.map */
