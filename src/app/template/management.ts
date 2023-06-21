@@ -22,7 +22,7 @@ export const expandOptions_sorts: iExpandOptions[] =
         message: ''
     }, {
         option: 'עריכת המחזור',
-        message: ''
+        message: 'האם אתה בטוח שברצונך לערוך מחזור מיון זה?'
     }, {
         option: 'העבר לארכיון',
         message: 'האם אתה בטוח שברצונך להעביר מחזור מיון זה לארכיון?'

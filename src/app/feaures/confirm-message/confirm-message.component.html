@@ -1,13 +1,12 @@
 <div class="message-background">
     <div class="container" *ngIf="navTitle.url.includes('confirm')">
         <img class="close-icon" src="../../../assets/images/cross.png" (click)="closeMessage()">
-        <h3>{{message}}</h3>
-        <h3 style="font-weight: 500; margin-top: 15px;" (click)="confirm.emit(navTitle.url.replace('confirm-', ''))">אישור</h3>
+        <h3>{{option?.message}}</h3>
+        <h3 style="font-weight: 500; margin-top: 15px;" (click)="confirm.emit(option?.option)">אישור</h3>
     </div>
 
     <div class="container"  *ngIf="navTitle.url.includes('error')">
         <img class="close-icon" src="../../../assets/images/cross.png" (click)="closeMessage()">
         <h3>{{message}}</h3>
-        <!-- <h3 style="font-weight: 500; margin-top: 15px;" (click)="confirm.emit(navTitle.url.replace('confirm', ''))">אישור</h3> -->
     </div>
 </div>

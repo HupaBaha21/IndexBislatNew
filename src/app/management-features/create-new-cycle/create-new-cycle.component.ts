@@ -22,6 +22,7 @@ export class CreateNewCycleComponent implements OnInit {
   @Input() selectedCycle = { name: '', status: '' };
   @Output() selectedPage = new EventEmitter();
   @Output() cycle = new EventEmitter;
+  @Output() option = new EventEmitter;
 
   showList: boolean = false;
   inputControl: FormControl = new FormControl();
@@ -134,8 +135,14 @@ export class CreateNewCycleComponent implements OnInit {
   createCycleInterface() {
     if (this.newCycle.valid && this.coursesValidator() && this.genderArr) {
 
-      if (this.selectedCycle.name != '') { this.selectedPage.emit({ url: 'confirm-edit-cycle', text: 'עריכת מחזור מיון' }); }
-      else { this.selectedPage.emit({ url: 'confirm-create-new-cycle', text: 'יצירת מחזור מיון חדש' }); }
+      if (this.selectedCycle.name != '') {
+        this.option.emit({ option: 'אישור עריכת המחזור', message: 'האם אתה בטוח שברצונך לערוך מחזור מיון זה?' });
+        this.selectedPage.emit({ url: 'confirm-edit-cycle', text: 'עריכת מחזור מיון' });
+      }
+      else {
+        this.option.emit({ option: 'יצירת המחזור', message: 'האם אתה בטוח שברצונך ליצור מחזור מיון זה?' });
+        this.selectedPage.emit({ url: 'confirm-create-new-cycle', text: 'יצירת מחזור מיון חדש' });
+      }
 
       this.cycle.emit({
         name: this.newCycle.controls['name'].value || '',

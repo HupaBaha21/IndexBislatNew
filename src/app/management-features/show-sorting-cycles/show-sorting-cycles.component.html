@@ -15,6 +15,6 @@
     </div>
 </ng-container>
 
-<div class="blob" *ngIf="page.url === 'sorts'" style="background-color: rgb(255, 255, 255); padding: 10px;" (click)="selectedPage.emit({ text: 'יצירת מחזור מיון חדש', url: 'create-new-cycle' })">
+<div class="blob" *ngIf="page.url.includes('sorts')" style="background-color: rgb(255, 255, 255); padding: 10px;" (click)="selectedPage.emit({ text: 'יצירת מחזור מיון חדש', url: 'create-new-cycle' })">
     <img src="../../../../assets/images/addIcon.png" class="add-cycle">
 </div>

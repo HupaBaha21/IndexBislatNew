@@ -10,53 +10,18 @@ import { Observable } from 'rxjs';
 })
 export class ManagementPageService {
 
-  answer$ = new BehaviorSubject<string>('');
+  // answer$ = new BehaviorSubject<string>('');
   deleteAnswer$ = new BehaviorSubject<iAnswer>({});
   putAnswer$ = new BehaviorSubject<iAnswer>({});
+  updateTo2$ = new BehaviorSubject<iAnswer>({});
+  updateTo3$ = new BehaviorSubject<iAnswer>({});
 
 
   constructor(private apiConnection: RequestsService, private exportExcel: ExportExcelService) { }
 
-  deleteCycle(cycleName: string): Observable<iAnswer> {
-
-    this.apiConnection.DeleteRequest('Sort/' + cycleName).subscribe(
-      res => { this.deleteAnswer$.next({ isSuccess: true }); },
-      err => { this.deleteAnswer$.next({ isSuccess: false, message: err.message }); }
-    );
-    return this.deleteAnswer$;
-  }
 
   fileDownload(cycleName: string) {
     this.exportExcel.exportAsExcelFile(this.createCycleInterface_excel(cycleName + ''), cycleName + '');
-  }
-
-  updateCycleStatus(cycleName: string, updatedStatus: number): Observable<iAnswer> {
-
-    console.log(cycleName);
-    let originalCycle: { courses: string[], name: string, status: number } = this.apiConnection.GetRequest('Sort/' + cycleName);
-    originalCycle.status = updatedStatus;
-    originalCycle.courses = this.listOfCourseNumber(originalCycle.courses);
-    originalCycle.name = 'd';
-
-    this.apiConnection.PutRequest('Sort/UpdateSort', originalCycle).subscribe(
-      res => { console.log(res); this.putAnswer$.next({ isSuccess: true }); },
-      err => { console.log(err); this.putAnswer$.next({ isSuccess: false, message: err.message }); }
-    );
-
-    return this.putAnswer$;
-  }
-
-
-
-
-  // ------------------------------------------------------------
-  listOfCourseNumber(courses: any) {
-    let listCourseNumber: string[] = [];
-
-    for (let i = 0; i < courses.length; i++) {
-      listCourseNumber.push(courses[i].courseNumber);
-    }
-    return listCourseNumber;
   }
 
   createCycleInterface_excel(cycleName: string): any[] {
@@ -81,6 +46,56 @@ export class ManagementPageService {
     return cycleInterface;
   }
 
+  // deleteCycle(cycleName: string): Observable<iAnswer> {
+
+  //   this.apiConnection.DeleteRequest('Sort/' + cycleName).subscribe(
+  //     res => { this.deleteAnswer$.next({ isSuccess: true }); },
+  //     err => { this.deleteAnswer$.next({ isSuccess: false, message: err.message }); }
+  //   );
+  //   return this.deleteAnswer$;
+  // }
+
+  // updateCycleStatus(cycleName: string, updatedStatus: number): Observable<iAnswer> {
+
+  //   let originalCycle: { courses: string[], name: string, status: number } = this.apiConnection.GetRequest('Sort/' + cycleName);
+  //   originalCycle.status = updatedStatus;
+  //   originalCycle.courses = this.listOfCourseNumber(originalCycle.courses);
+  //   console.log(originalCycle);
+
+  //   this.apiConnection.PutRequest('Sort/UpdateSort', originalCycle).subscribe(
+  //     res => {
+  //       if (updatedStatus === 3) { this.updateTo3$.next({ isSuccess: true }); }
+  //       if (updatedStatus === 2) { this.updateTo2$.next({ isSuccess: true }); }
+  //       // this.putAnswer$.next({ isSuccess: true }); 
+  //     },
+  //     err => { this.putAnswer$.next({ isSuccess: false, message: err.message }); }
+  //   );
+  //   return this.putAnswer$;
+  // }
+
+  // sendToArchives(cycleName: string): Observable<iAnswer> {
+
+  //   let originalCycle: { courses: string[], name: string, status: number } = this.apiConnection.GetRequest('Sort/' + cycleName);
+  //   originalCycle.status = 3;
+  //   originalCycle.courses = this.listOfCourseNumber(originalCycle.courses);
+  //   console.log(originalCycle);
+
+  //   this.apiConnection.PutRequest('Sort/UpdateSort', originalCycle).subscribe(
+  //     res => { this.updateTo3$.next({ isSuccess: true }); },
+  //     err => { this.updateTo3$.next({ isSuccess: false, message: err.message }); }
+  //   );
+  //   return this.putAnswer$;
+  // }
+
+  // ------------------------------------------------------------
+  // listOfCourseNumber(courses: any) {
+  //   let listCourseNumber: string[] = [];
+
+  //   for (let i = 0; i < courses.length; i++) {
+  //     listCourseNumber.push(courses[i].courseNumber);
+  //   }
+  //   return listCourseNumber;
+  // }
 
 }
 

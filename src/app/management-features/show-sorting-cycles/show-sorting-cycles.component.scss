@@ -24,9 +24,11 @@
 
 h4 {
   width: fit-content;
+  margin: 3px 0;
 
   &.h4__bold {
     font-weight: 400;
+    margin: 0;
   }
 
   // span {

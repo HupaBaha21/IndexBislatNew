@@ -38,7 +38,7 @@ export class RequestsService {
     );
   }
 
-  PutRequest(httpURL: string, item: any): Observable<string> {
+  PutRequest(httpURL: string, item: any) {
     return this.http.put(this.url + httpURL, JSON.stringify(item), {
       headers: new HttpHeaders({ 'Content-Type': 'application/json' }),
       responseType: 'text',

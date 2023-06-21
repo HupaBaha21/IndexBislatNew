@@ -5,25 +5,26 @@
 
 
 <!-- הצגת מחזורי מיון -->
-<app-show-sorting-cycles *ngIf="navTitle.url.includes('sorts')" [sortionCycles]="soringCycles_showed"
-[page]="navTitle" (selectedPage)="navTitle = $event" (selectedCycle)="editCycle($event)" (message)="message = $event"></app-show-sorting-cycles>
+<app-show-sorting-cycles *ngIf="navTitle.url.includes('sorts')" [sortionCycles]="soringCycles_showed" (option)="option = $event"
+[page]="navTitle" (selectedPage)="navTitle = $event" (message)="errorMessage = $event" (cycle)="cycle = $event"></app-show-sorting-cycles>
+<!-- [page]="navTitle" (selectedPage)="navTitle = $event" (selectedCycle)="editCycle($event)" (message)="message = $event"></app-show-sorting-cycles> -->
 <!-- ארכיון -->
-<app-show-sorting-cycles *ngIf="navTitle.url === 'archives'" 
-[sortionCycles]="soringCycles_archives" [page]="navTitle"></app-show-sorting-cycles>
+<app-show-sorting-cycles *ngIf="navTitle.url.includes('archives')" [sortionCycles]="soringCycles_archives"
+[page]="navTitle" (selectedPage)="navTitle = $event"  (cycle)="cycle = $event" (message)="errorMessage = $event" (option)="option = $event"></app-show-sorting-cycles>
 <!-- יצירת מחזור מיון חדש -->
-<app-create-new-cycle *ngIf="navTitle.url.includes('create-new-cycle')" 
-(selectedPage)="creatNewCycle_confirm($event)" (cycle)="cycle = $event"></app-create-new-cycle>
+<app-create-new-cycle *ngIf="navTitle.url.includes('create-new-cycle')" (selectedPage)="navTitle = $event"
+(cycle)="cycle = $event" (option)="option = $event"></app-create-new-cycle>
 <!-- עריכת מחזור מיון -->
-<app-create-new-cycle *ngIf="navTitle.url.includes('edit-cycle')" 
-(selectedPage)="creatNewCycle_confirm($event)" (cycle)="cycle = $event" [selectedCycle]="selectedCycle"></app-create-new-cycle>
+<app-create-new-cycle *ngIf="navTitle.url.includes('edit-cycle')" (option)="option = $event"
+(cycle)="cycle = $event" [selectedCycle]="cycle" (selectedPage)="navTitle = $event"></app-create-new-cycle>
 <!-- הודעת אישור לפעולה -->
 <app-confirm-message *ngIf="navTitle.url.includes('confirm')" [navTitle]="navTitle" 
-(selectedPage)="navTitle = $event" [message]="message" (confirm)="NewCycle_update($event)"></app-confirm-message>
+(selectedPage)="navTitle = $event" [message]="errorMessage" (confirm)="actConfirmed($event)" [option]="option"></app-confirm-message>
 
 
 <!-- טעינה -->
 <app-loading *ngIf="navTitle.url.includes('loading')"></app-loading>
 <!-- תקלה בשרת -->
 <app-confirm-message *ngIf="navTitle.url.includes('error')" [navTitle]="navTitle" 
-(selectedPage)="navTitle = $event" [message]="message" (confirm)="NewCycle_update($event)"></app-confirm-message>
+(selectedPage)="navTitle = $event" [message]="errorMessage"></app-confirm-message>
 
